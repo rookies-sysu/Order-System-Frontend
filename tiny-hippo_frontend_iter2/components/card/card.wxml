@@ -1,0 +1,7 @@
+<!--components/card/card.wxml-->
+<view class="wrapper" data-ratio="1:1" style="background-image: url({{image}})">
+  <view class="card-text">
+    <text class='card-title'>{{title}}\n</text>
+    <text class='card-description'>{{description}}</text>
+  </view>
+</view>

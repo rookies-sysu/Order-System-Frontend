@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "当季推荐",
+  "usingComponents": {
+    "card": "/components/card/card"
+  }
+}
