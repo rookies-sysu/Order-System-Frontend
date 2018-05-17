@@ -18,12 +18,31 @@ Component({
   },
 
   data: {
-
+    dish: {
+      DishID: 1,
+    },
+    loading: false
   },
 
   methods: {
-    setBackgroundImage: function() {
-      
-    }
+    
+  },
+
+  attached: function(options) {
+    var that = this
+    wx.request({
+      url: "https://easy-mock.com/mock/5afbe65c3e9a2302b68981e5/dish?dishId=" + this.properties.dishId,
+      method: 'GET',
+      data: {},
+      header: {
+        'Accept': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          dish: res.data.data,
+          loading: true
+        })
+      }
+    })
   }
 })

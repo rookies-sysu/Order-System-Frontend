@@ -15,7 +15,7 @@ Page({
         'Accept': 'application/json'
       },
       success: function (res) {
-        console.log(res.data)
+        // console.log(res.data)
         wx.hideLoading();
         that.setData({
           recommendation_list: res.data.data,
