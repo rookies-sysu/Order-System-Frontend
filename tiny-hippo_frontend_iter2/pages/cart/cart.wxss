@@ -1,0 +1,196 @@
+.page{
+  height: 100%;
+}
+
+.order {
+  background:#fff;
+  width:100%;
+}
+
+.address{
+  padding-top: 55rpx;
+  padding-left: 44rpx;
+  padding-right: 30rpx;
+}
+
+.address1{
+  font-size:34rpx;
+  padding-bottom:10rpx;
+  font-weight: bold;
+}
+
+.address2{
+  font-size:26rpx;
+  color: #6C6C6C;
+}
+
+.line{
+  margin-top: 50rpx;
+  border-bottom:2rpx solid #c3c3c3;
+}
+
+.line1{
+  margin-top: 38rpx;
+  border-bottom:2rpx solid #c3c3c3;
+}
+
+.orderInfo {
+  padding-top:70rpx;
+  padding-left:44rpx;  
+  padding-right:30rpx;
+}
+
+.orderTitle{
+  font-weight: bold;
+  font-size:34rpx;
+}
+.emptyOrder{
+  margin-top: 100rpx;
+  margin-left: 320rpx;
+  margin-bottom: 80rpx;
+  font-size: 30rpx;
+  font-style: italic;
+  color:#7C7C7C;
+}
+.orderList{
+  padding-top: 20rpx;
+}
+.itemName{
+  font-size: 26rpx;
+}
+.item-info{
+  float: right;
+  display: flex;
+  flex-direction: row;
+}
+.orderNum{
+  width: 60rpx;
+  text-align: center
+}
+.plus-icon{
+  font-size: 40rpx;
+  color:#444444;
+}
+.minus-icon{
+  font-size: 40rpx;
+  color:#444444;
+}
+.price {
+    margin-top: 6rpx;
+    width:130rpx;
+    text-align: right;
+}
+.details{
+  margin-top: 40rpx;
+  margin-left: 44rpx;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+.detailText{
+  font-weight: lighter;
+  font-size: 30rpx;
+  color: #6C6C6C;
+  padding-top: 10rpx;
+}
+.payment {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  height: 18%;
+  padding-top: 26rpx;
+  background:#F3F4F6;
+}
+.heji{
+ font-size: 28rpx;
+ margin-left: 36rpx;
+ font-weight: bold;
+}
+.total-Money{
+  color: #ff0000;
+  float: right;
+  padding: 8rpx;
+  padding-right: 30rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.buttons{
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  align-content: flex-start;
+}
+
+.alipay{
+  margin-top: 28rpx;
+  border-radius: 6rpx;
+  padding-top:6rpx;
+  height:76rpx;
+  width: 36%;
+  font-size: 24rpx;
+  background: #0085ff;
+  color: #eee;
+  text-align: center;
+  margin-left: 40rpx;
+}
+.wechat{
+  border-radius: 6rpx;
+  margin-top: 28rpx;
+  margin-left: 110rpx;
+  padding-top: 6rpx;
+  width: 38%;
+  font-size: 24rpx;
+  background: #209d00;
+  text-align: center;
+  color: #eee;
+}
+.hover-alipay{
+  margin-top: 28rpx;
+  border-radius: 6rpx;
+  padding-top:6rpx;
+  height:76rpx;
+  width: 36%;
+  font-size: 24rpx;
+  background: #0085df;
+  color: #ddd;
+  text-align: center;
+  margin-left: 40rpx;
+}
+.hover-wechat{
+  border-radius: 6rpx;
+  margin-top: 28rpx;
+  margin-left: 110rpx;
+  padding-top: 6rpx;
+  width: 38%;
+  font-size: 24rpx;
+  background: #208d00;
+  color: #ddd;
+  text-align: center;
+}
+.cant-alipay{
+  margin-top: 28rpx;
+  border-radius: 6rpx;
+  padding-top:6rpx;
+  height:76rpx;
+  width: 36%;
+  font-size: 24rpx;
+  background: #0085df;
+  color: #ddd;
+  text-align: center;
+  margin-left: 40rpx;
+}
+.cant-wechat{
+  border-radius: 6rpx;
+  margin-top: 28rpx;
+  margin-left: 110rpx;
+  padding-top: 6rpx;
+  width: 38%;
+  font-size: 24rpx;
+  background: #208d00;
+  color: #ddd;
+  text-align: center;
+}
+
+
+
+
+
