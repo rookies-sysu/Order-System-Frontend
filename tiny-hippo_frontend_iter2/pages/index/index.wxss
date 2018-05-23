@@ -1,0 +1,98 @@
+@import "../../component/hSwiper/hSwiper.wxss";
+
+/*滚动图*/
+/* #a0 {
+  margin-top:10rpx;
+} */
+.mainContainer{
+	height: 400rpx;
+	width: 100%;
+}
+.recommend_scroll_x_box {
+  margin-top: 20rpx;
+  height: 1000rpx;
+  overflow: hidden;
+  /* white-space: nowrap;  */
+  /* display: flex; */
+}
+.itemSelf{
+	position: absolute;
+	box-sizing:border-box;
+	overflow: hidden;
+	padding: 25rpx;
+  padding-top: 15rpx;
+	height: 100%;
+	width: 100%;
+	color: white;
+}
+.content {
+  width:500px;
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  border-bottom: 1px solid #E3E3E3;
+  will-change: transform;
+}
+.food-type {
+  font-family: "SimHei";
+  font-weight: bold;
+  margin-left: 50rpx;
+  padding:4rpx
+}
+.food-type-other {
+  font-family: "SimHei";
+  font-weight: bold;
+  margin-top: 30rpx;
+  margin-left: 40rpx;
+  padding:4rpx
+}
+
+.list-image-box{
+  width:90px;
+  height:90px;
+  text-align: center;
+}
+
+.content-list{
+  margin-left:10rpx;
+  width:100px;
+  display: flex;
+  flex-direction: row; 
+  /* flex-flow: row wrap; */
+}
+.list-image{
+  width:70px;
+  height:70px;
+  border-radius: 10px;
+  margin-top: 5rpx;
+}
+.food-name{
+  width:200px;
+  font-size:25rpx;
+  font-weight: bold;
+  font-family: "SimHei";
+  margin-top:20rpx;
+}
+.content-number{
+  float:right;
+}
+.plus-icon{
+  margin-left: 4px;
+  float:right;
+  font-size: 39rpx;
+  font-weight: bold;
+  color:#222;
+}
+.list-minus{
+  font-size:35rpx;
+  font-weight: bold;
+  color:#222;
+  margin-right:5px;
+}
+.item-number {
+  font-weight: bold;
+  font-size: 32rpx;
+  margin-right: 5px;
+}
