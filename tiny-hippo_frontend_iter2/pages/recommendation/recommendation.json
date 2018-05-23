@@ -1,10 +1,6 @@
 {
   "navigationBarTitleText": "当季推荐",
   "usingComponents": {
-<<<<<<< HEAD
-    "card": "/components/card/card"
-=======
     "card": "/component/card/card"
->>>>>>> features/BeAShaper
   }
 }
