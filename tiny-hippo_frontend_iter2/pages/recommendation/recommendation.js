@@ -16,7 +16,7 @@ Page({
       },
       success: function (res) {
         // console.log(res.data)
-        wx.hideLoading();
+        wx.hideLoading()
         that.setData({
           recommendation_list: res.data.data,
           loading: true

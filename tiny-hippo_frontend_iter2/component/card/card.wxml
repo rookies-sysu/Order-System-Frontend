@@ -1,13 +1,16 @@
 <!--components/card/card.wxml-->
-<view class="wrapper" style="background-image: url({{image}})">
-  <view class="card-text">
-    <text class='card-title'>{{title}}\n</text>
-    <text class='card-description'>{{description}}</text>
+<navigator url="/pages/recommendation-details/recommendation-details?recommendationId={{recommendationId}}" >
+  <view class="wrapper">
+    <view class="card-text">
+      <text class='card-tag'>{{tag}}\n</text>
+      <text class='card-title'>{{title}}</text>
+    </view>
+    <view class="bg-blur" style="background-image: url({{image}})"></view>
+    <image class="card-image" src="{{image}}"></image>
+    <view class="card-dish" wx-if="{{loading}}">
+      <image class="card-dish-image" src="{{dish.imageURL}}"></image>
+      <text class="card-dish-name">{{dish.name}}</text>
+      <text class="card-dish-price">￥{{dish.price}}</text>
+    </view>
   </view>
-  <view class="bg-blur" style="background-image: url({{image}})"></view>
-  <view class="card-dish" wx-if="{{loading}}">
-    <image class="card-dish-image" src="{{dish.imageURL}}"></image>
-    <text class="card-dish-name">{{dish.name}}</text>
-    <text class="card-dish-price">￥{{dish.price}}</text>
-  </view>
-</view>
+</navigator>

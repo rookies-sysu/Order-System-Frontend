@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/recommendation/recommendation",
+    "pages/recommendation-details/recommendation-details",
     "pages/index/index",
-    "pages/cart/cart",
-    "pages/recommendation/recommendation"
+    "pages/cart/cart"
   ],
   "window": {
     "backgroundTextStyle": "dark",
