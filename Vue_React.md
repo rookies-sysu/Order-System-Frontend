@@ -261,8 +261,8 @@ var MyButtonController = React.createClass({
 
 很多传统的服务端代码放在了浏览器中，这样就产生了成千上万行的JavaScript代码，它们连接了各式各样的HTML和CSS文件，但缺乏正规的组织形式。
 
-<img src="http://wx2.sinaimg.cn/mw690/006fVSiZgy1frwkmq6snzj30ok0nqgx0.jpg" width=50%>
-<img src="http://wx2.sinaimg.cn/mw690/006fVSiZgy1frwkmvavc2j30og0nqqgr.jpg" width=50%>
+<img src="http://wx2.sinaimg.cn/mw690/006fVSiZgy1frwkmq6snzj30ok0nqgx0.jpg" width=30%>
+<img src="http://wx2.sinaimg.cn/mw690/006fVSiZgy1frwkmvavc2j30og0nqqgr.jpg" width=30%>
 
 Vue是一款较友好、多用途的JavaScript框架，它能够帮助构建可维护性和可测试性更强的代码库。和许多其他前端框架一样，Vue允许将一个网页分割成可复用的组件，每个组件都包含属于自己的HTMLCSS和JavaScript用来渲染网页中相应的地方。
 
