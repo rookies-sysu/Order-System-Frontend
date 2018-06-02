@@ -62,7 +62,7 @@ props 是组件包含的两个核心概念之一，另一个是 state。可以�
 
 <h2 id="Flux">Flux</h2>
 
-####介绍
+#### 介绍
 
 React 本身只涉及UI层，如果搭建大型应用，必须搭配一个前端框架。即**React + 前端框架**才能基本满足需要。
 Facebook官方使用的是 Flux 框架。React 标榜自己是 MVC 里面 V 的部分，那么 Flux 就相当于添加 M 和 C 的部分。使用 Flux 组织代码和安排内部逻辑，使得应用更易于开发和维护，它跟MVC 架构是同一类东西，但是更加简单和清晰。它利用单向数据流的方式来组合React中的视图组件。
@@ -122,7 +122,7 @@ var ButtonActions = {
 
 上面代码中，`ButtonActions.addNewItem`方法使用`AppDispatcher`，把动作`ADD_NEW_ITEM`派发到Store。
 
-####Dispatcher
+#### Dispatcher
 
 Dispatcher 的作用是将 Action 派发到 Store。可以把它看作一个路由器，负责在 View 和 Store 之间，建立 Action 的正确传递路线。注意，Dispatcher 只能有一个，而且是全局的。
 
@@ -146,7 +146,7 @@ AppDispatcher.register(function (action) {
 上面代码中，Dispatcher收到`ADD_NEW_ITEM`动作，就会执行回调函数，对`ListStore`进行操作。
 注意，Dispatcher 只用来派发 Action，不应该有其他逻辑。
 
-####Store
+#### Store
 
 Store 保存整个应用的状态，它的角色有点像 MVC 架构之中的Model 。
 
@@ -208,7 +208,7 @@ var ListStore = assign({}, EventEmitter.prototype, {
 
 Store 更新后（`this.addNewItemHandler()`）发出事件（`this.emitChange()`），表明状态已经改变。 View 监听到这个事件，就可以查询新的状态，更新页面了。
 
-####View
+#### View
 
 View 监听 Store 的 change 事件。
 
