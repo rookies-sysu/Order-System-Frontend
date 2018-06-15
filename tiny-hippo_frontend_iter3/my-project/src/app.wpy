@@ -21,14 +21,38 @@ setStore(store)
 
 export default class extends wepy.app {
   config = {
-    pages: [
-      'pages/index'
-    ],
+    pages: ['pages/today', 'pages/payment', 'pages/today-detail', 'pages/menu'],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'Tiny Hippo 点餐',
       navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      color: '#999999',
+      selectedColor: '#e0620d',
+      borderStyle: 'black',
+      backgroundColor: '#ffffff',
+      list: [
+        {
+          pagePath: 'pages/today',
+          iconPath: 'images/today.png',
+          selectedIconPath: 'images/today_selected.png',
+          text: 'Today'
+        },
+        {
+          pagePath: 'pages/menu',
+          iconPath: 'images/dish.png',
+          selectedIconPath: 'images/dish_selected.png',
+          text: 'Menu'
+        },
+        {
+          pagePath: 'pages/payment',
+          iconPath: 'images/cart.png',
+          selectedIconPath: 'images/cart_selected.png',
+          text: 'Cart'
+        }
+      ]
     }
   }
 
@@ -36,7 +60,7 @@ export default class extends wepy.app {
     userInfo: null
   }
 
-  constructor () {
+  constructor() {
     super()
     this.use('requestfix')
   }
@@ -45,7 +69,7 @@ export default class extends wepy.app {
     this.testAsync()
   }
 
-  sleep (s) {
+  sleep(s) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve('promise resolved')
@@ -53,7 +77,7 @@ export default class extends wepy.app {
     })
   }
 
-  async testAsync () {
+  async testAsync() {
     const data = await this.sleep(3)
     console.log(data)
   }
@@ -64,7 +88,7 @@ export default class extends wepy.app {
       return this.globalData.userInfo
     }
     wepy.getUserInfo({
-      success (res) {
+      success(res) {
         that.globalData.userInfo = res.userInfo
         cb && cb(res.userInfo)
       }

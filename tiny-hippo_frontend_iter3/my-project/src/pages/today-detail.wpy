@@ -1,0 +1,101 @@
+<style>
+.recommendation-description {
+  margin: 20px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.details-description {
+  font-size: 12px;
+  color: gray;
+}
+
+.details-dish {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.details-dish-image {
+  width: 75px;
+  height: 75px;
+  border-radius: 15%;
+}
+
+.details-dish-info {
+  margin-left: 20px;
+  display: inline;
+  position: absolute;
+}
+
+.details-dish-name {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.details-dish-price {
+  font-size: 12px;
+  margin-top: 35px;
+  position: relative;
+}
+</style>
+
+<template>
+<view class="wrapper">
+  <view class="recommendation-image" style="width: {{window_width}}px; height: {{window_width}}px;" src="{{recommendation.image}}"></view>
+  <view class="recommendation-description">
+    <view class="title">{{recommendation.title}}\n</view>
+    <view class="details" wx:for="{{recommendation.details}}" wx:key="index">
+      <view class="details-description">{{item.description}}</view>
+      <view class="details-dish">
+        <view class="details-dish-image" src="{{item.dish.imageURL}}"></view>
+        <view class="details-dish-info">
+          <view class="details-dish-name">{{item.dish.name}}</view>
+          <view class="details-dish-price">￥{{item.dish.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class TodayDetail extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Today'
+  }
+
+  data = {
+    recommendation: {},
+    recommendation_id: {}
+  }
+
+  onLoad(options) {
+    var width = wepy.getSystemInfoSync().windowWidth
+    this.setData({
+      window_width: width
+    })
+
+    var that = this
+    wepy.request({
+      url: 'https://easy-mock.com/mock/5afbe65c3e9a2302b68981e5/recommendation?recommendation_id=' + options.recommendationId,
+      method: 'GET',
+      data: {},
+      header: {
+        'Accept': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          recommendation_id: options.recommendationId,
+          recommendation: res.data.data
+        })
+      }
+    })
+  }
+}
+</script>
