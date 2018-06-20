@@ -101,7 +101,7 @@
       <view class="content" style="width:{{styleValue[0]}}px;" data-type="{{index}}" animation="{{swiperAnmiation[index]}}" bindtouchstart="menuTouchstart" bindtouchmove="menuTouchmove" bindtouchend="menuTouchend">
         <view class='content-list' wx:for="{{item.foods}}" wx:key="unique" wx:for-item="items" wx:for-index="indexs" style="width:{{screenWidth-reduceDistance}}px;">
           <view class='list-image-box'>
-            <view class="list-image" src='{{items.image_url}}'></view>
+            <image class="list-image" src='{{items.image_url}}'></image>
           </view>
           <view class='food-name'>
             <view>{{items.name}}</view>
@@ -132,7 +132,7 @@
       activeIndex: 0,
       toView: 'a1',
       scrollTop: 300,
-      // screenWidth: 667,
+      screenWidth: 667,
       showModalStatus: false,
       currentType: 0,
       currentIndex: 0,
