@@ -19,21 +19,21 @@
     "list": [
       {
         "pagePath": "pages/recommendation/recommendation",
-        "iconPath": "images/calendar1.png",
-        "selectedIconPath": "images/calendar2.png",
-        "text": "Today"
+        "iconPath": "images/today.png",
+        "selectedIconPath": "images/today_selected.png",
+        "text": "今日推荐"
       },
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/menu1.png",
-        "selectedIconPath": "images/menu2.png",
-        "text": "Menu"
+        "iconPath": "images/menu.png",
+        "selectedIconPath": "images/menu_selected.png",
+        "text": "菜单"
       },
       {
         "pagePath": "pages/cart/cart",
         "iconPath": "images/cart1.png",
         "selectedIconPath": "images/cart2.png",
-        "text": "Order"
+        "text": "订单"
       }
     ]
   }

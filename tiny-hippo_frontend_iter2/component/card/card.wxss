@@ -6,7 +6,7 @@
   margin-top: 10px;
   margin-bottom: 30px;
   width: 330px;
-  height: 410px;
+  height: 420px;
   position: relative;
   overflow: hidden;
   border-radius: 5%;
