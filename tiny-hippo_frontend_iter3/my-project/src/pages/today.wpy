@@ -90,9 +90,8 @@
     }
     async getRecommendationList() {
       const res = await api.getRecommendationList()
-      this.setData({
-        recommendationList: res.data.data
-      })
+      this.recommendationList = res.data.data
+      this.$apply()
     }
     onLoad() {
       this.getRecommendationList()
