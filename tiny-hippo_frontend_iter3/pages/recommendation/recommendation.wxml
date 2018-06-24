@@ -1,0 +1,6 @@
+<!--pages/recommendation/recommendation.wxml-->
+<view class="wrapper" wx:if="{{loading}}">
+  <view wx:for="{{recommendation_list}}">
+    <card title="{{item.title}}" description="{{item.description}}" image="{{item.image}}" dishId="{{item.dish_id}}"></card>
+  </view>
+</view>
