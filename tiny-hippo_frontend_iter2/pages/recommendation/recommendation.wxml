@@ -1,6 +1,6 @@
 <!--pages/recommendation/recommendation.wxml-->
-<view class="wrapper" wx:if="{{loading}}">
-  <view class="recommendation_list" wx:for="{{recommendation_list}}">
+<view class="wrapper">
+  <view class="recommendation_list" wx:for="{{recommendation_list}}" wx:key='xx'>
     <card title="{{item.title}}" tag="{{item.tag}}" image="{{item.image}}" recommendationId="{{item.recommendation_id}}"></card>
   </view>
 </view>

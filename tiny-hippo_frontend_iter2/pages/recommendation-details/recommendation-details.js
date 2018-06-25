@@ -1,18 +1,13 @@
 // pages/recommendation-details/recommendation-details.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     recommendation: {},
     recommendation_id: {},
-    loading: false
+    cartList: [],
+    tolMoney: 0
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     var width = wx.getSystemInfoSync().windowWidth
     this.setData({
@@ -21,67 +16,115 @@ Page({
     
     var that = this
     wx.request({
-      url: "https://easy-mock.com/mock/5afbe65c3e9a2302b68981e5/recommendation?recommendation_id=" + options.recommendationId,
+      url: "http://111.230.31.38:8080/restaurant/recommendation",
       method: 'GET',
       data: {},
       header: {
         'Accept': 'application/json'
       },
       success: function (res) {
-        that.setData({
-          recommendation_id: options.recommendationId,
-          recommendation: res.data.data
+        let temp = res.data[options.recommendationId - 1]
+        wx.getStorage({
+          key: 'cartList',
+          success: function (res2) {
+            for (let i = 0; i < temp.details.length; i++) {
+              temp.details[i].dish.number = 0
+              temp.details[i].dish.index = i
+              for (let j = 0; j < res2.data.length; j++) {
+                if (res2.data[j].name == temp.details[i].dish.name) {
+                  temp.details[i].dish.number = res2.data[j].number
+                }
+              }
+            }
+
+            that.setData({
+              recommendation: temp,
+              cartList: res2.data
+            })
+          },
+          fail: function () {
+            that.setData({
+              recommendation: res.data[options.recommendationId - 1],
+              cartList: []
+            })
+          }
+        })
+
+        wx.getStorage({
+          key: 'tolMoney',
+          success: function (res) {
+            that.setData({
+              tolMoney: res.data
+            })
+          },
+          fail: function () {
+            that.setData({
+              tolMoney: 0
+            })
+          }
         })
       }
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  addToCart: function (e) {
+    let index = e.currentTarget.dataset.index
+    let dish = e.currentTarget.dataset.dish
+    let category = e.currentTarget.dataset.category
+
+    let recommendation_temp = this.data.recommendation
+    let cartList_temp = this.data.cartList
+
+    let flag = 0
+    recommendation_temp.details[index].dish.number += 1  // update page
+    for (let i = 0; i < cartList_temp.length; i++) {
+      if (cartList_temp[i].name == recommendation_temp.details[index].dish.name) {
+        cartList_temp[i].number = cartList_temp[i].number + 1  // update cartlist
+        cartList_temp[i].sum = cartList_temp[i].number * cartList_temp[i].price
+        break
+      }
+    }
+
+    if (flag == 0) {  // new dish
+      cartList_temp.push({
+        "name": recommendation_temp.details[index].dish.name,
+        "price": recommendation_temp.details[index].dish.price,
+        "number": recommendation_temp.details[index].dish.number,
+        "sum": recommendation_temp.details[index].dish.number * recommendation_temp.details[index].dish.price,
+        "type": category,
+        "index": dish
+      })
+    }
+
+    this.setData({
+      recommendation: recommendation_temp,
+      cartList: cartList_temp,
+      tolMoney: this.data.tolMoney + recommendation_temp.details[index].dish.price
+    })
+    
+    wx.setStorageSync('cartList', this.data.cartList)
+    wx.setStorageSync('tolMoney', this.data.tolMoney)
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  minusFromMenu: function (e) {
+    let index = e.currentTarget.dataset.index
+    let dish = e.currentTarget.dataset.dish
+    let category = e.currentTarget.dataset.category
+
+    let recommendation_temp = this.data.recommendation
+    let cartList_temp = this.data.cartList
+
+    recommendation_temp.details[index].dish.number += 1  // update page
+
+    this.setData({
+      recommendation: recommendation_temp
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+    console.log(this.data.cartList)
+    console.log('hh')
+    wx.setStorageSync('cartList', this.data.cartList)
+    wx.setStorageSync('tolMoney', this.data.tolMoney)
   }
 })

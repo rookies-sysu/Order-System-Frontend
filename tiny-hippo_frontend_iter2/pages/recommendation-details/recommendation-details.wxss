@@ -33,13 +33,26 @@
 }
 
 .details-dish-name {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: bold;
 }
 
 .details-dish-price {
   font-size: 12px;
-  margin-top: 35px;
+  margin-top: 10px;
   position: relative;
 }
 
+.details-dish-content {
+  float: right;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.details-dish-content-number {
+  font-size: 15px;
+}
+
+.iconfont {
+  font-size: 15px;
+}
