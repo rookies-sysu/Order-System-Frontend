@@ -274,7 +274,7 @@ Page({
       wx.setStorageSync('tolMoney', this.data.tolMoney);
       wx.setStorageSync('foodNumber', this.data.foodNumber);
       wx.navigateTo({
-        url: ''   // 结算页面地址
+        url: '../../pages/payment/payment'   // 结算页面地址
       })
     }
   },

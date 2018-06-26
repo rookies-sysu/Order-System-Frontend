@@ -1,0 +1,65 @@
+<style lang="less">
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+export default class extends wepy.app {
+  config = {
+    pages: ['pages/today', 'pages/payment', 'pages/today-detail', 'pages/menu'],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'Tiny Hippo 点餐',
+      navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      color: '#999999',
+      selectedColor: '#e0620d',
+      borderStyle: 'black',
+      backgroundColor: '#ffffff',
+      list: [
+        {
+          pagePath: 'pages/today',
+          iconPath: 'images/today.png',
+          selectedIconPath: 'images/today_selected.png',
+          text: 'Today'
+        },
+        {
+          pagePath: 'pages/menu',
+          iconPath: 'images/dish.png',
+          selectedIconPath: 'images/dish_selected.png',
+          text: 'Menu'
+        },
+        {
+          pagePath: 'pages/payment',
+          iconPath: 'images/cart.png',
+          selectedIconPath: 'images/cart_selected.png',
+          text: 'Cart'
+        }
+      ]
+    }
+  }
+
+  globalData = {
+
+  }
+
+  constructor() {
+    super()
+    this.use('requestfix')
+    this.use('promisify')
+  }
+
+  onLaunch() {}
+}
+</script>

@@ -101,7 +101,6 @@ Page({
     wx.getStorage({
       key: 'cartList',
       success: function (res) {
-        // console.log(res.data)
         that.setData({
           cartList: res.data
         })
@@ -335,7 +334,6 @@ Page({
       currentIndex: index,
       listData: listData
     });
-
     var a = this.data;
     var unselected = true;
     var cartList = this.data.cartList;
