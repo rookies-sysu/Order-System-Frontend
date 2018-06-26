@@ -6,7 +6,7 @@ Page({
   data: {
     tolMoney: 0,
     cartList: [],
-    deletezlist: [],
+    deleteList: [],
     tableNum: 0,
     foodNumber: 0,
     isOrdered: false,
@@ -14,8 +14,8 @@ Page({
   },
 
   addToCart: function (e) {
-    var index = e.currentTarget.dataset.index;
-    // console.log(index);
+    var index = e.detail.index;
+    //console.log(index);
     var cartList = this.data.cartList;
     var item = cartList[index];
     cartList[index].number = item.number + 1;
@@ -33,6 +33,7 @@ Page({
   },
 
   checkRepeatOrder: function (cartList, isOrdered) {
+    if(cartList.length == 0) return false;
     //如果当前订单没有更新，则不能重复下单
     var isRepeated = true;
     for (let i = 0; i < cartList.length; i++) {
@@ -46,7 +47,7 @@ Page({
   },
 
   minusFromCart: function (e) {
-    var index = e.currentTarget.dataset.index;
+    var index = e.detail.index;
     //console.log(index);
     var cartList = this.data.cartList;
     var deleteList = this.data.deleteList;
@@ -93,14 +94,11 @@ Page({
         title: "提交订单",
         content: "确认提交？",
         success: function (res) {
-          that.setData({
-            isOrdering: true
-          })
           // console.log(res)
           if (res.confirm) {
             wx.showToast({
               title: "提交成功",
-              duration: 3000
+              duration: 1000
             })
             var orderedList = that.data.cartList;
             for (var i = 0; i < orderedList.length; i++) {
@@ -123,11 +121,6 @@ Page({
     
     //如果没有提交订单需要先提交订单
     if (that.data.isOrdered == false) {
-      var orderedList = that.data.cartList;
-      for (var i = 0; i < orderedList.length; i++) {
-        orderedList[i].orderedNum = orderedList[i].number;
-      }
-      console.log(orderedList);
       wx.showModal({
         title: "提交订单",
         content: "确认提交？",
@@ -136,8 +129,12 @@ Page({
           if (res.confirm) {
             wx.showToast({
               title: "提交成功",
-              duration: 500
+              duration: 1000
             })
+            var orderedList = that.data.cartList;
+            for (var i = 0; i < orderedList.length; i++) {
+              orderedList[i].orderedNumber = orderedList[i].number;
+            }
             that.setData({
               isOrdered: true,
               details: '',
@@ -152,7 +149,7 @@ Page({
                   wx.showActionSheet({
                     itemList: ['使用微信支付', '使用现金支付'],
                     success: function (res) {
-                      console.log(res)
+                      //console.log(res)
                       //选择微信支付
                       if (res.tapIndex == 0) {
                         wx.showToast({

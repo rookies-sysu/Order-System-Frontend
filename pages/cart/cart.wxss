@@ -9,13 +9,11 @@
 
 .tableNumber {
   font-size: 27rpx;
-  padding-top: 28rpx;
-  padding-left: 44rpx;
-  color: #ea9518
+  color: #6C6C6C
 }
 
 .address{
-  padding-top: 10rpx;
+  padding-top: 65rpx;
   padding-left: 44rpx;
   padding-right: 30rpx;
 }
@@ -28,16 +26,23 @@
 
 .address2{
   font-size:26rpx;
+  padding-bottom:30rpx;
   color: #6C6C6C;
 }
 
 .line{
-  margin-top: 50rpx;
   border-bottom:2rpx solid #c3c3c3;
 }
 
+.tips {
+  margin-top: 30rpx;
+  font-size:26rpx;
+  color: #f0ba0c;
+  text-align: right
+}
+
 .line1{
-  margin-top: 50rpx;
+  margin-top: 12rpx;
   border-bottom:2rpx solid #c3c3c3;
 }
 .scroll-list {
@@ -54,9 +59,9 @@
   font-size:34rpx;
 }
 .emptyOrder{
-  margin-top: 117rpx;
+  margin-top: 145rpx;
   margin-left: 320rpx;
-  margin-bottom: 145rpx;
+  margin-bottom: 180rpx;
   font-size: 30rpx;
   font-style: italic;
   color:#7C7C7C;
@@ -64,36 +69,7 @@
 .orderList{
   padding-top: 30rpx;
 }
-.orderItem{
-  padding-top: 6rpx;
-}
-.itemName{
-  font-size: 27rpx;
-}
-.item-info{
-  float: right;
-  display: flex;
-  flex-direction: row;
-}
-.orderNum{
-  margin-top:1rpx;
-  margin-left: 1rpx;
-  width: 60rpx;
-  text-align: center
-}
-.plus-icon{
-  font-size: 40rpx;
-  color:#444444;
-}
-.minus-icon{
-  font-size: 37rpx;
-  color:#444444;
-}
-.price {
-    margin-top: 6rpx;
-    width:130rpx;
-    text-align: right;
-}
+
 .details{
   margin-top: 30rpx;
   margin-left: 44rpx;
