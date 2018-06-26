@@ -1,2 +1,0 @@
-# frontend
-front end repo
