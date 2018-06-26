@@ -1,0 +1,11 @@
+<!--component/orderItem/order-item.wxml-->
+<view class='orderItem'>
+  <view class="itemName">{{name}}
+    <view class="item-info">
+      <i class="iconfont icon-minus minus-icon" bindtap="minusFromCart" ></i>
+      <text class="orderNum">{{number}}</text>
+      <i class="iconfont icon-add plus-icon" bindtap="addToCart"></i>
+      <text class="sum">￥ {{sum}}</text>
+    </view>
+  </view>
+</view>
