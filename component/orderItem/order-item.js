@@ -47,7 +47,7 @@ Component({
    */
   methods: {
     minusFromCart: function () {
-      //console.log('trigger minus')
+      console.log('trigger minus')
       if (!this.data.selfOrder) {
         wx.showModal({
           title: "提示",
@@ -69,7 +69,7 @@ Component({
     },
 
     addToCart: function () {
-      //console.log('trigger add')
+      console.log('trigger add')
       if (!this.data.selfOrder) {
         wx.showModal({
           title: "提示",
