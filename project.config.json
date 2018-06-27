@@ -35,8 +35,8 @@
 				{
 					"id": 0,
 					"name": "testTableNum",
-					"pathName": "pages/index/index",
-					"query": "tableNum=0001"
+					"pathName": "pages/authorize/authorize",
+					"query": "tableNum=0060"
 				}
 			]
 		}

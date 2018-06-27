@@ -3,7 +3,8 @@
     "pages/recommendation/recommendation",
     "pages/recommendation-details/recommendation-details",
     "pages/index/index",
-    "pages/cart/cart"
+    "pages/cart/cart",
+    "pages/authorize/authorize"
   ],
   "window": {
     "backgroundTextStyle": "dark",
