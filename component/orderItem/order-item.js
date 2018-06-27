@@ -46,7 +46,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    minusFromCart: function (e) {
+    minusFromCart: function () {
       //console.log('trigger minus')
       if (!this.data.selfOrder) {
         wx.showModal({
