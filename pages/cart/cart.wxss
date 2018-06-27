@@ -66,6 +66,17 @@
   font-style: italic;
   color:#7C7C7C;
 }
+.avatar{
+  margin-top: 10rpx;
+  margin-left: 5rpx;
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50rpx;
+}
+.name {
+  margin-left: 10rpx;
+  font-size: 27rpx
+}
 .orderList{
   padding-top: 30rpx;
 }

@@ -27,6 +27,11 @@ Component({
     orderedNumber: {
       type: Number,
       value: 0
+    },
+
+    selfOrder : {
+      type: Number,
+      value: 1
     }
   },
 
@@ -41,8 +46,17 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    minusFromCart: function () {
-      console.log('trigger minus')
+    minusFromCart: function (e) {
+      //console.log('trigger minus')
+      if (!this.data.selfOrder) {
+        wx.showModal({
+          title: "提示",
+          content: "不能修改别人的订单哦~",
+          showCancel: false,
+        })
+        return;
+      }
+
       if (this.data.orderedNumber != 0 && this.data.orderedNumber == this.data.number) {
         wx.showModal({
           title: "提示",
@@ -55,7 +69,15 @@ Component({
     },
 
     addToCart: function () {
-      console.log('trigger add')
+      //console.log('trigger add')
+      if (!this.data.selfOrder) {
+        wx.showModal({
+          title: "提示",
+          content: "不能修改别人的订单哦~",
+          showCancel: false,
+        })
+        return;
+      }
       var eventDetail = { index: this.data.index }
       this.triggerEvent('addEvent', eventDetail, {}) //触发addEvent事件
     }
