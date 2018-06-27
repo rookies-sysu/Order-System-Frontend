@@ -309,10 +309,6 @@ Page({
   postOrder: function () {
     var that = this;
 
-    if (that.data.foodNumber == 0 && that.data.cartList.length == 0) {
-      console.log('empty don;t post order')
-      return;
-    }
     if (app.globalData.openid == '') {
       console.log('empty customerID')
       return;
@@ -332,7 +328,7 @@ Page({
         'Cookie': app.globalData.cookie
       },
       complete: function (res) {
-        //console.log(res)
+        console.log(res)
         if (res.statusCode != 200) {
           console.log('error ' + res.errMsg)
           return;

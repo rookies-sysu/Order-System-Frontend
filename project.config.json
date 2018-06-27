@@ -36,7 +36,7 @@
 					"id": 0,
 					"name": "testTableNum",
 					"pathName": "pages/authorize/authorize",
-					"query": "tableNum=0060"
+					"query": "tableNum=0010"
 				}
 			]
 		}
