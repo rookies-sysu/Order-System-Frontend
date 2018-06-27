@@ -1,0 +1,76 @@
+<!--order.wxml-->
+
+  <view class="order">
+    <view class="address">
+      <view class="address1">
+      广州麦当劳中二横路餐厅
+      </view>
+      <view class="address2">
+      广东省广州市番禺区麦当劳中二横路分店
+      </view>
+      <view style='margin-top: 23rpx'>
+        <view class="line"></view>
+      </view>
+    </view>
+
+    <view class="orderInfo">
+      <label class="orderTitle">
+          订单详情
+      </label>
+      <view class="emptyOrder" wx:if="{{foodNumber==0 && tableList.length==0?true:false}}">
+        这里，空空的
+      </view>
+
+      <scroll-view scroll-y="true" class="{{foodNumber!=0?'scroll-list':''}}">
+        
+        <!--当前用户订单-->
+        <view wx:if="{{foodNumber!=0?true:false}}">
+          <image class='avatar' src='{{url}}'>
+          </image>
+          <span class='name'>{{nickName}}</span>
+        </view>
+
+        <view class="orderList" wx:for="{{cartList}}" wx:key="unique"  wx:if="{{foodNumber!=0?true:false}}">
+          <order-item name="{{item.name}}" number='{{item.number}}' sum='{{item.sum}}' index='{{index}}' orderedNumber='{{item.orderedNumber}}' selfOrder='1' bindminusEvent='minusFromCart' bindaddEvent='addToCart'>
+          </order-item>
+        </view>
+
+        <!--其他用户订单-->
+        <view  wx:for="{{tableList}}" wx:key="unique" wx:if="{{tableList.length!=0?true:false}}">
+          <view>
+            <image class='avatar' src='{{item.customer_image}}'>
+            </image>
+            <span class='name'>{{item.customer_name}}</span>
+          </view>
+          <view class="orderList" wx:for="{{item.dish}}" wx:for-item="items" wx:key="unique" wx:for-index="indexs">
+            <order-item name="{{items.name}}" number='{{items.number}}' sum='{{items.sum}}' index='{{indexs}}' orderedNumber='{{items.orderedNumber}}' selfOrder='0' bindminusEvent='minusFromCart' bindaddEvent='addToCart' >
+            </order-item>
+          </view>
+        </view>
+      </scroll-view>
+      <view class = "tips" wx:if="{{foodNumber!=0?true:false}}">tips: 已提交的订单不会重复下单</view>
+      <view class="line1"></view>
+    </view>
+  </view>
+  <view class="details">
+    <view>备注</view>
+    <textarea class="detailText" placeholder="桌号：{{tableNum}}" bindblur="bindTextAreaBlur" value="{{details}}"></textarea>
+  </view>
+
+  <view class="payment">
+    <label class="heji">
+    合计
+      <label class="total-Money"  wx:if="{{bill!=0?true:false}}">
+      RMB {{bill}}
+      </label>
+    </label>
+    <view class='buttons'>
+      <button class="{{bill!=0 && isOrdered==false?'purchaseOrder':'cant-purchaseOrder'}}" hover-class='hover-purchaseOrder' bindtap="purchaseOrder"> 
+      {{isOrdered == true?'已提交':'提交订单'}}
+      </button>
+      <button class="{{bill!=0?'wechat':'cant-wechat'}}" hover-class='hover-wechat' bindtap="payOrder"> 
+      支付订单
+      </button>
+    </view>
+  </view>
+  
