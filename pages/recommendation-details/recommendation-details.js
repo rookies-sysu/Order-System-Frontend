@@ -75,12 +75,13 @@ Page({
     let recommendation_temp = this.data.recommendation
     let cartList_temp = this.data.cartList
 
-    let flag = 0
+    var flag = 0
     recommendation_temp.details[index].dish.number += 1  // update page
     for (let i = 0; i < cartList_temp.length; i++) {
       if (cartList_temp[i].name == recommendation_temp.details[index].dish.name) {
         cartList_temp[i].number = cartList_temp[i].number + 1  // update cartlist
         cartList_temp[i].sum = cartList_temp[i].number * cartList_temp[i].price
+        flag = 1;
         break
       }
     }
@@ -116,9 +117,16 @@ Page({
 
     recommendation_temp.details[index].dish.number -= 1  // update page
 
+    for (var i = 0; i < cartList_temp.length; i++)
+      if (cartList_temp[i].name == recommendation_temp.details[index].dish.name)
+        cartList_temp[i].number == 1 ? cartList_temp.splice(i, 1) : cartList_temp[i].number--;
+
     this.setData({
-      recommendation: recommendation_temp
+      recommendation: recommendation_temp,
+      cartList: cartList_temp
     })
+
+    wx.setStorageSync('cartList', this.data.cartList)
   },
 
   onHide: function () {

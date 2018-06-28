@@ -42,6 +42,9 @@ Page({
       //能否加菜,false则可以
       isOrdered: false
     })
+
+    wx.setStorageSync('cartList', cartList)
+
     that.postOrder();
   },
 
@@ -127,6 +130,8 @@ Page({
       deleteList: deleteList
     })
     
+    wx.setStorageSync('cartList', cartList)
+
     that.postOrder();
   },
 

@@ -146,6 +146,18 @@ Page({
 
   },
   changeFoodNum: function() {
+    //获取购物车
+    wx.getStorage({
+      key: 'cartList',
+      success: function (res) {
+        // console.log(res.data)
+        that.setData({
+          cartList: res.data,
+          deleteList: []
+        })
+      }
+    })
+
     var that = this
     var loading = that.data.loading
     if (!loading) {
@@ -166,7 +178,7 @@ Page({
                 // 删除元素后需要调整下标位置
                 i = i - 1;
                 foodNum = foodNum - 1;
-                listData[_type].foods[_index].number = 0;
+                listData[_type].dish[_index].number = 0;
               }
             }
           }
@@ -176,8 +188,8 @@ Page({
       }
       if (foodNum == 0) {
         for (var i = 0, len = listData.length; i < len; i++) {
-          for (var j = 0, _len = listData[i].foods.length; j < _len; j++) {
-            listData[i].foods[j].number = 0;
+          for (var j = 0, _len = listData[i].dish.length; j < _len; j++) {
+            listData[i].dish[j].number = 0;
           }
         }
       }

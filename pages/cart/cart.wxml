@@ -17,13 +17,13 @@
       <label class="orderTitle">
           订单详情
       </label>
-      <view class="emptyOrder" wx:if="{{foodNumber==0 && tableList.length==0?true:false}}">
+      <view class="emptyOrder" wx:if="{{cartList.length == 0 && tableList.length==0?true:false}}">
         这里，空空的
       </view>
 
-      <scroll-view scroll-y="true" class="{{foodNumber!=0?'scroll-list':''}}">
+      <scroll-view scroll-y="true" class="{{cartList.length!=0?'scroll-list':''}}">
         <!--当前用户-->
-        <view wx:if="{{foodNumber!=0?true:false}}">
+        <view wx:if="{{cartList.length!=0?true:false}}">
             <image class='avatar' src='{{url}}'>
             </image>
             <span class='name'>{{CustomerID}}</span>
@@ -46,7 +46,7 @@
           </view>
         </view>
       </scroll-view>
-      <view class = "tips" wx:if="{{foodNumber!=0?true:false}}">tips: 已提交的订单不会重复下单</view>
+      <view class = "tips" wx:if="{{cartList.length!=0?true:false}}">tips: 已提交的订单不会重复下单</view>
       <view class="line1"></view>
     </view>
   </view>
