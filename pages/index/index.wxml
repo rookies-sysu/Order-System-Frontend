@@ -1,28 +1,24 @@
-<import src="../../component/hSwiper/hSwiper.wxml"/>
+<import src="../../component/hSwiper/hSwiper.wxml" />
 <scroll-view scroll-y="true" class="scroll_box">
-   <view class="mainContainer">
+  <view class="mainContainer">
     <template is="hSwiper" data="{{...hSwiperVar}}"></template>
-  </view> 
+  </view>
 
   <view id="a{{index}}" wx:for="{{listData}}" wx:key="unique" style="width:{{styleValue[index]}}px;" data-type="{{index}}">
-      <view class="food-type">{{item.name}}</view>
-      <view class="content" style="width:{{styleValue[0]}}px;" data-type="{{index}}" 
-                                        animation="{{swiperAnmiation[index]}}"
-                                        bindtouchstart="menuTouchstart"
-                                        bindtouchmove="menuTouchmove"
-                                        bindtouchend="menuTouchend">
+    <view class="food-type">{{item.name}}</view>
+    <view class="content" style="width:{{styleValue[0]}}px;" data-type="{{index}}" animation="{{swiperAnmiation[index]}}" bindtouchstart="menuTouchstart" bindtouchmove="menuTouchmove" bindtouchend="menuTouchend">
 
-        <view class='content-list'  wx:for="{{item.dish}}" wx:key="unique" wx:for-item="items" wx:for-index="indexs"  style="width:{{screenWidth-reduceDistance}}px;" >
-      
-          <view class='list-image-box'>
-            <image class="list-image"  src='{{items.imageUrl}}'></image>
-          </view>
-          <view class='food-name'>
-            <view>{{items.name}}</view>
-            <view class='food-price'>
+      <view class='content-list' wx:for="{{item.dish}}" wx:key="unique" wx:for-item="items" wx:for-index="indexs" style="width:{{screenWidth-reduceDistance}}px;">
+
+        <view class='list-image-box'>
+          <image class="list-image" src='{{items.imageUrl}}'></image>
+        </view>
+        <view class='food-name'>
+          <view>{{items.name}}</view>
+          <view class='food-price'>
             ¥ {{items.price}}.00
             <view class="content-number">
-            
+
               <i class="iconfont icon-minus list-minus" data-type="{{index}}" data-index="{{indexs}}" catchtap="minusFromMenu" wx:if="{{items.number!=0?true:false}}"></i>
 
               <span wx:if="{{items.number!=0?true:false}}" class="item-number"> {{items.number}} </span>
@@ -31,9 +27,9 @@
               <view style="height:100px;" wx:if="{{index==listData.length-1&&indexs==item.dish.length-1}}"></view>
             </view>
           </view>
+        </view>
       </view>
-      </view>
-      </view>
+    </view>
   </view>
 
 </scroll-view>

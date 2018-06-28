@@ -28,7 +28,7 @@ Page({
     // 视图过度动画实例
     swiperAnmiation: {}
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     //获取餐桌号
     var scene = options.tableNum;
@@ -43,7 +43,7 @@ Page({
       header: {
         'Accept': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         wx.hideLoading();
         console.log(res)
         that.setData({
@@ -65,7 +65,7 @@ Page({
     });
 
   },
-  onReady: function () {
+  onReady: function() {
     var swiper = new hSwiper({
       reduceDistance: this.data.reduceDistance,
       varStr: 'hSwiperVar',
@@ -77,7 +77,8 @@ Page({
         'http://wx4.sinaimg.cn/mw690/006fVSiZgy1fremptogetj30jy0daq3w.jpg',
         'http://wx3.sinaimg.cn/mw690/006fVSiZgy1fremq3kke4j30jv0ceab7.jpg',
         'http://wx4.sinaimg.cn/mw690/006fVSiZgy1frempiddekj30hm0bjjsm.jpg',
-        'http://wx2.sinaimg.cn/mw690/006fVSiZgy1frempm4glyj30hj0bqq3j.jpg']
+        'http://wx2.sinaimg.cn/mw690/006fVSiZgy1frempm4glyj30hj0bqq3j.jpg'
+      ]
     });
 
     var width = wx.getSystemInfoSync().windowWidth;
@@ -85,15 +86,15 @@ Page({
       screenWidth: width,
       itemWidth: width - this.data.reduceDistance
     })
-    setInterval(function () {
+    setInterval(function() {
       swiper.nextView();
     }, 2000);
 
-    setInterval(function () {
+    setInterval(function() {
       swiper.moveViewTo(0);
     }, 10000);
   },
-  initialData: function () {
+  initialData: function() {
     var listData = this.data.listData;
     var that = this
     for (var i = 0; i < listData.length; i++) {
@@ -113,11 +114,11 @@ Page({
       })
     }
   },
-  onShow: function (options) {
+  onShow: function(options) {
     var that = this
     wx.getStorage({
       key: 'cartList',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           cartList: res.data
         })
@@ -127,7 +128,7 @@ Page({
 
     wx.getStorage({
       key: 'tolMoney',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           tolMoney: res.data
         })
@@ -136,7 +137,7 @@ Page({
 
     wx.getStorage({
       key: 'foodNumber',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           foodNumber: res.data
         })
@@ -144,7 +145,7 @@ Page({
     })
 
   },
-  changeFoodNum: function () {
+  changeFoodNum: function() {
     var that = this
     var loading = that.data.loading
     if (!loading) {
@@ -155,16 +156,23 @@ Page({
       var _type = 0
       var _index = 0
       for (var i = 0; i < foodNum; i++) {
-        _type = cartList[i].type
-        _index = cartList[i].index
-        listData[_type].foods[_index].number = cartList[i].number
-        if (cartList[i].number == 0) {
-          cartList.splice(i, 1);
-          // 删除元素后需要调整下标位置
-          i = i - 1;
-          foodNum = foodNum - 1;
-          listData[_type].foods[_index].number = 0;
-        }
+        for (var j = 0; j < listData.length; j++)
+          for (var k = 0; k < listData[j].dish.length; k++) {
+            if (listData[j].dish[k].name == cartList[i].name) {
+              listData[j].dish[k].number = cartList[i].number
+
+              if (cartList[i].number == 0) {
+                cartList.splice(i, 1);
+                // 删除元素后需要调整下标位置
+                i = i - 1;
+                foodNum = foodNum - 1;
+                listData[_type].foods[_index].number = 0;
+              }
+            }
+          }
+        // _type = cartList[i].type
+        // _index = cartList[i].index
+        // listData[_type].dish[_index].number = cartList[i].number
       }
       if (foodNum == 0) {
         for (var i = 0, len = listData.length; i < len; i++) {
@@ -178,13 +186,13 @@ Page({
       })
     }
   },
-  menuTouchstart: function (e) {
+  menuTouchstart: function(e) {
     this.setData({
       startPos: e.touches[0].clientX,
       touchTime: e.timeStamp
     })
   },
-  menuTouchmove: function (e) {
+  menuTouchmove: function(e) {
     var self = this;
     var id = e.currentTarget.dataset.type;
     this.setData({
@@ -193,7 +201,7 @@ Page({
     var delta = self.data.endPos - self.data.startPos
     this.menuMovePos(id, delta);
   },
-  menuTouchend: function (e) {
+  menuTouchend: function(e) {
     var self = this;
     var id = e.currentTarget.dataset.type;
     var delta = e.changedTouches[0].clientX - self.data.startPos
@@ -218,9 +226,9 @@ Page({
       self.moveViewTo(id, self.getNowView(id));
     }
   },
-  menuMovePos: function (id, x) {
+  menuMovePos: function(id, x) {
     var tempPos = this.data.nowTranX + x,
-      minPos = - this.data.itemWidth - 20,
+      minPos = -this.data.itemWidth - 20,
       maxPos = 20;
     // 最大的位置
     if (tempPos > maxPos) {
@@ -231,7 +239,7 @@ Page({
     }
     this.updateMoveAnimation(id, tempPos);
   },
-  updateMoveAnimation: function (id, x) {
+  updateMoveAnimation: function(id, x) {
     var animation = wx.createAnimation({
       transformOrigin: '50% 50%',
       duration: 0,
@@ -243,7 +251,7 @@ Page({
       ["swiperAnmiation." + id]: animation.export()
     })
   },
-  getNowView: function (id) {
+  getNowView: function(id) {
     var indexView = this.data.nowView[id];
     if (this.data.nowTranX > 0) {
       return 0;
@@ -251,7 +259,7 @@ Page({
     indexView = indexView > 0 ? indexView : 0;
     return indexView;
   },
-  nextView: function (id) {
+  nextView: function(id) {
     var index = parseInt(this.data.nowView[id]) + 1;
     index = index > 1 ? 1 : index;
     this.setData({
@@ -260,7 +268,7 @@ Page({
     this.moveViewTo(id, index);
     return index;
   },
-  preView: function (id) {
+  preView: function(id) {
     var index = this.data.nowView[id] - 1;
     index = index < 0 ? 0 : index;
     this.setData({
@@ -269,7 +277,7 @@ Page({
     this.moveViewTo(id, index);
     return index;
   },
-  moveViewTo: function (id, viewIndex) {
+  moveViewTo: function(id, viewIndex) {
     this.setData({
       nowTranX: viewIndex == 1 ? -(this.data.itemWidth) * viewIndex - 5 : (this.data.itemWidth) * viewIndex,
       ["nowView." + id]: viewIndex
@@ -277,7 +285,7 @@ Page({
     this.updateViewAnimation(id, this.data.nowTranX);
   },
 
-  updateViewAnimation: function (id, x) {
+  updateViewAnimation: function(id, x) {
     var animation = wx.createAnimation({
       transformOrigin: '50% 50%',
       duration: 300,
@@ -292,7 +300,7 @@ Page({
   /**
    * 添加到购物车
    */
-  addToCart: function (e) {
+  addToCart: function(e) {
     var _type = e.currentTarget.dataset.type;
     var index = e.currentTarget.dataset.index;
     var selected_item = this.data.listData[_type].dish[index];
@@ -340,7 +348,7 @@ Page({
     });
   },
   /*从图片处减少商品*/
-  minusFromMenu: function (e) {
+  minusFromMenu: function(e) {
     var _type = e.currentTarget.dataset.type;
     var index = e.currentTarget.dataset.index;
 
@@ -388,11 +396,15 @@ Page({
     });
 
   },
-  onHide: function () {
+  onHide: function() {
     if (this.data.tolMonney != 0) {
       wx.setStorageSync('cartList', this.data.cartList);
       wx.setStorageSync('tolMoney', this.data.tolMoney);
       wx.setStorageSync('foodNumber', this.data.foodNumber);
     }
+  },
+  syncWithCart: function() {
+    let i = 0;
+
   }
 })

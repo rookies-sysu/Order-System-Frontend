@@ -114,7 +114,7 @@ Page({
     let recommendation_temp = this.data.recommendation
     let cartList_temp = this.data.cartList
 
-    recommendation_temp.details[index].dish.number += 1  // update page
+    recommendation_temp.details[index].dish.number -= 1  // update page
 
     this.setData({
       recommendation: recommendation_temp
