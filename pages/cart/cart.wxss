@@ -1,0 +1,204 @@
+.page{
+  height: 100%;
+}
+
+.order {
+  background:#fff;
+  width:100%;
+}
+
+.tableNumber {
+  font-size: 27rpx;
+  color: #6C6C6C
+}
+
+.address{
+  padding-top: 65rpx;
+  padding-left: 44rpx;
+  padding-right: 30rpx;
+}
+
+.address1{
+  font-size:34rpx;
+  padding-bottom:10rpx;
+  font-weight: bold;
+}
+
+.address2{
+  font-size:26rpx;
+  padding-bottom:30rpx;
+  color: #6C6C6C;
+}
+
+.line{
+  border-bottom:2rpx solid #c3c3c3;
+}
+
+.tips {
+  margin-top: 30rpx;
+  font-size:26rpx;
+  color: #f0ba0c;
+  text-align: right
+}
+
+.line1{
+  margin-top: 12rpx;
+  border-bottom:2rpx solid #c3c3c3;
+}
+.scroll-list {
+  height: 300rpx;
+}
+.orderInfo {
+  padding-top:35rpx;
+  padding-left:44rpx;  
+  padding-right:30rpx;
+}
+
+.orderTitle{
+  font-weight: bold;
+  font-size:34rpx;
+}
+.emptyOrder{
+  margin-top: 145rpx;
+  margin-left: 320rpx;
+  margin-bottom: 180rpx;
+  font-size: 30rpx;
+  font-style: italic;
+  color:#7C7C7C;
+}
+.avatar{
+  margin-top: 10rpx;
+  margin-left: 5rpx;
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50rpx;
+}
+.name {
+  margin-left: 10rpx;
+  font-size: 27rpx
+}
+
+.orderedList{
+  padding-top: 10rpx;
+}
+
+.orderList {
+  padding-top: 10rpx; 
+}
+
+.details{
+  margin-top: 30rpx;
+  margin-left: 44rpx;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+.detailText{
+  font-weight: lighter;
+  font-size: 30rpx;
+  color: #6C6C6C;
+  padding-top: 15rpx;
+  height: 120rpx;
+  width: 500rpx;
+}
+.payment {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  height: 20%;
+  padding-top: 24rpx;
+  background:#F3F4F6;
+}
+.heji{
+ font-size: 28rpx;
+ margin-left: 36rpx;
+ font-weight: bold;
+}
+.total-Money{
+  color: #ff0000;
+  float: right;
+  padding: 8rpx;
+  padding-right: 30rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.buttons{
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  align-content: flex-start;
+}
+
+.purchaseOrder{
+  margin-top: 28rpx;
+  border-radius: 6rpx;
+  padding-top:6rpx;
+  height:76rpx;
+  width: 36%;
+  font-size: 24rpx;
+  background: #0085ff;
+  color: #eee;
+  text-align: center;
+  margin-left: 40rpx;
+}
+.wechat{
+  border-radius: 6rpx;
+  margin-top: 28rpx;
+  margin-left: 110rpx;
+  padding-top: 6rpx;
+  width: 38%;
+  font-size: 24rpx;
+  background: #20ad00;
+  text-align: center;
+  color: #eee;
+}
+.hover-purchaseOrder{
+  margin-top: 28rpx;
+  border-radius: 6rpx;
+  padding-top:6rpx;
+  height:76rpx;
+  width: 36%;
+  font-size: 24rpx;
+  background: #0085df;
+  color: #ddd;
+  text-align: center;
+  margin-left: 40rpx;
+}
+.hover-wechat{
+  border-radius: 6rpx;
+  margin-top: 28rpx;
+  margin-left: 110rpx;
+  padding-top: 6rpx;
+  width: 38%;
+  font-size: 24rpx;
+  background: #208d00;
+  color: #ddd;
+  text-align: center;
+}
+.cant-purchaseOrder{
+  margin-top: 28rpx;
+  border-radius: 6rpx;
+  padding-top:6rpx;
+  height:76rpx;
+  width: 36%;
+  font-size: 24rpx;
+  background: #0085df;
+  color: #ddd;
+  text-align: center;
+  margin-left: 40rpx;
+}
+.cant-wechat{
+  border-radius: 6rpx;
+  margin-top: 28rpx;
+  margin-left: 110rpx;
+  padding-top: 6rpx;
+  width: 38%;
+  font-size: 24rpx;
+  background: #208d00;
+  color: #ddd;
+  text-align: center;
+}
+
+
+
+
+
