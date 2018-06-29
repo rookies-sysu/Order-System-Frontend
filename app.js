@@ -32,9 +32,9 @@ App({
             
             success: function (res) {
               if (res.statusCode == 200) {
-                console.log(res)
+                //console.log(res)
                 that.globalData.openid = res.data.openid
-                console.log(that.globalData.openid)
+                console.log('openid '+that.globalData.openid)
                 //wx.setStorageSync('openid', res.data.openid)
               } else {
                 console.log(res.errMsg)

@@ -39,12 +39,12 @@ Page({
 
               //创建个人session
               wx.request({
-                url: 'http://111.230.31.38:8080/restaurant/customer/record',
+                url: 'http://111.230.31.38:8080/api/restaurant/customer/record',
                 data: {
-                  'table': app.globalData.tableNum,
-                  'CustomerID': app.globalData.openid,
-                  'name': app.globalData.userInfo.nickName,
-                  'image': app.globalData.userInfo.avatarUrl
+                  'table': parseInt(app.globalData.tableNum),
+                  'customerId': app.globalData.openid,
+                  'customerName': app.globalData.userInfo.nickName,
+                  'customerImageUrl': app.globalData.userInfo.avatarUrl
                 },
                 method: "POST",
                 header: {
