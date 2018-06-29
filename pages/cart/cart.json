@@ -1,8 +1,0 @@
-{
-  "window": {
-    "navigationBarTitleText": "我的订单"
-  },
-  "usingComponents": {
-    "order-item": "/component/orderItem/order-item"
-  }
-}
