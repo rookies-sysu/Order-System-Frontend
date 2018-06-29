@@ -17,7 +17,7 @@ Page({
     deleteList: [],
 
     foodNumber: 0,
-
+    tableNum: '',
     isOrdered: false,
     isPost: false,
     payment: 0,
@@ -95,6 +95,7 @@ Page({
         console.log(res.data);
 
         //发送个人订单
+        console.log('cookie ' + app.globalData.cookie);
         wx.request({
           url: 'http://111.230.31.38:8080/api/restaurant/customer/edit',
           data: that.createOrderJson(),
@@ -354,7 +355,7 @@ getMaxpayment: function (tableList) {
       },
       complete: function (res) {
         console.log(res)
-        if (res.statusCode != 200) {
+        if (res.statusCode != 200 || res.data.indexOf('None') > 0) {
           console.log('error ' + res.errMsg)
           that.setData({
             bill: that.data.tolMoney
@@ -391,22 +392,26 @@ getMaxpayment: function (tableList) {
         var bill = 0;
         var maxPayment = 0;
         for (var i = 0; i < data.length; i++) {
-          if (data[i].orderInfo != "" && data[i].orderInfo.dish.length != 0) {
-            var item = {
-              customerId: data[i].orderInfo.customerId,
-              dish: data[i].orderInfo.dish,
-              customer_image: data[i].customer_image,
-              customer_name: data[i].customer_name,
-              paymentStatus: data[i].orderInfo.paymentStatus
-            };
+          if (data[i].orderInfo != "") {
+
+            var item = '';
+            if (data[i].orderInfo.dish.length != 0) {
+              item = {
+                customerId: data[i].orderInfo.customerId,
+                dish: data[i].orderInfo.dish,
+                customer_image: data[i].customer_image,
+                customer_name: data[i].customer_name,
+                paymentStatus: data[i].orderInfo.paymentStatus
+              };
+              if (data[i].orderInfo.customerId != app.globalData.openid) {
+                tableList.push(item);
+              }
+              bill = bill + data[i].orderInfo.totalPrice;
+              totalOrder.push(item);
+            }
             if (data[i].orderInfo.paymentStatus > maxPayment) {
               maxPayment = data[i].orderInfo.paymentStatus;
             }
-            if (data[i].orderInfo.customerId != app.globalData.openid) {
-              tableList.push(item);
-            }
-            bill = bill + data[i].orderInfo.totalPrice;
-            totalOrder.push(item);
           }
         }
 
