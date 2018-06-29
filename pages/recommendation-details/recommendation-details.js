@@ -16,7 +16,7 @@ Page({
     
     var that = this
     wx.request({
-      url: "http://111.230.31.38:8080/restaurant/recommendation",
+      url: "http://111.230.31.38:8080/api/restaurant/recommendation",
       method: 'GET',
       data: {},
       header: {
