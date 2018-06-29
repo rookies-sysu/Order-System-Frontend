@@ -37,7 +37,7 @@ Page({
 
     wx.request({
       /* 自己写的json数据的网址 */
-      url: 'http://111.230.31.38:8080/restaurant/category',
+      url: 'https://www.easy-mock.com/mock/5ab2750509c2ed0d826ee129/example/restaurant/category',
       method: 'GET',
       data: {},
       header: {
