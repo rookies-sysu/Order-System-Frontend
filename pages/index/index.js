@@ -1,4 +1,8 @@
 const hSwiper = require('../../component/hSwiper/hSwiper.js');
+
+//获取应用实例
+const app = getApp()
+
 Page({
   data: {
     //swiper插件变量
@@ -14,6 +18,7 @@ Page({
     cartList: [],
     tolMoney: 0,
     foodNumber: 0,
+    payment: 0,
     loading: true,
     foodTypeList: {},
     styleValue: {},
@@ -30,14 +35,8 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-    //获取餐桌号
-    var scene = options.tableNum;
-    //存储餐桌号
-    wx.setStorageSync('tableNum', scene);
-
     wx.request({
-      /* 自己写的json数据的网址 */
-      url: 'https://www.easy-mock.com/mock/5ab2750509c2ed0d826ee129/example/restaurant/category',
+      url: 'http://111.230.31.38:8080/api/restaurant/customer/category',
       method: 'GET',
       data: {},
       header: {
@@ -45,21 +44,10 @@ Page({
       },
       success: function (res) {
         wx.hideLoading();
-        console.log(res)
         that.setData({
           listData: res.data,
           loading: false,
         })
-
-        // var listData = res.data
-
-        // for (var index in array) {
-        //   var sexParam = "array[" + index + "].sex"
-        //   that.setData({
-        //     [sexParam]: "nan",
-        //   })
-        // }
-
         that.initialData()
       }
     });
@@ -99,8 +87,11 @@ Page({
     for (var i = 0; i < listData.length; i++) {
       for (var j = 0; j < listData[i].dish.length; j++) {
         var numParam = "listData[" + i + "].dish[" + j + "].number"
+        //已提交的数量
+        var orderedNumParam = "listData[" + i + "].dish[" + j + "].orderedNumber"
         that.setData({
           [numParam]: 0,
+          [orderedNumParam]: 0
         })
       }
     }
@@ -143,6 +134,15 @@ Page({
       }
     })
 
+    wx.getStorage({
+      key:'payment',
+      success:function(res) {
+        that.setData({
+          payment: res.data
+        })
+      }
+    })
+
   },
   changeFoodNum: function () {
     var that = this
@@ -157,19 +157,22 @@ Page({
       for (var i = 0; i < foodNum; i++) {
         _type = cartList[i].type
         _index = cartList[i].index
-        listData[_type].foods[_index].number = cartList[i].number
+        listData[_type].dish[_index].number = cartList[i].number
+        //已提交的数量
+        listData[_type].dish[_index].orderedNumber = cartList[i].orderedNumber
         if (cartList[i].number == 0) {
           cartList.splice(i, 1);
           // 删除元素后需要调整下标位置
           i = i - 1;
           foodNum = foodNum - 1;
-          listData[_type].foods[_index].number = 0;
+          listData[_type].dish[_index].number = 0;
         }
       }
       if (foodNum == 0) {
         for (var i = 0, len = listData.length; i < len; i++) {
-          for (var j = 0, _len = listData[i].foods.length; j < _len; j++) {
-            listData[i].foods[j].number = 0;
+          for (var j = 0, _len = listData[i].dish.length; j < _len; j++) {
+            listData[i].dish[j].number = 0;
+            listData[i].dish[j].orderedNumber = 0;
           }
         }
       }
@@ -289,6 +292,102 @@ Page({
       ["swiperAnmiation." + id]: animation.export()
     })
   },
+
+  //生成个人小订单
+  createOrderJson: function () {
+    var that = this;
+    var cartList = that.data.cartList;
+    var dishList = [];
+
+    for (var i = 0; i < cartList.length; i++) {
+      var item = {
+        "dishId": cartList[i].dishId,
+        "categoryId": cartList[i].categoryId,
+        "name": cartList[i].name,
+        "price": cartList[i].price,
+        "number": cartList[i].number,
+        "imageUrl": '',
+        "orderedNumber": cartList[i].orderedNumber
+      }
+      dishList.push(item);
+    };
+    var d = new Date();
+    var time = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + 'T' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() + '.' + d.getMilliseconds() + 'Z';
+    var orderObject = {
+      'orderInfo': {
+        "orderId": 0,
+        "table": parseInt(app.globalData.tableNum),
+        "dish": dishList,
+        "requirement": app.globalData.details,
+        "totalPrice": that.data.tolMoney,
+        "customerId": app.globalData.openid,
+        "time": time,
+        'paymentStatus': that.data.payment,
+        "cookingStatus": "todo"
+      }
+    };
+
+    return orderObject;
+  },
+
+  //发送顾客小订单
+  postOrder: function () {
+    var that = this;
+
+    if (app.globalData.tableNum == '') {
+      console.log('empty table')
+      return;
+    }
+
+    if (app.globalData.openid == '') {
+      console.log('empty customerID')
+      return;
+    }
+    if (app.globalData.cookie == '') {
+      console.log('empty cookie')
+      return;
+    }
+    //重新record
+    wx.request({
+      url: 'http://111.230.31.38:8080/api/restaurant/customer/record',
+      data: {
+        'table': parseInt(app.globalData.tableNum),
+        'customerId': app.globalData.openid,
+        'customerName': app.globalData.userInfo.nickName,
+        'customerImageUrl': app.globalData.userInfo.avatarUrl
+      },
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        'Cookie': app.globalData.cookie
+      },
+      complete: function (res) {
+        if (res.statusCode != 200) {
+          console.log('error ' + res.errMsg)
+          return;
+        }
+
+        //发送个人订单
+        wx.request({
+          url: 'http://111.230.31.38:8080/api/restaurant/customer/edit',
+          data: that.createOrderJson(),
+          method: "PUT",
+          header: {
+            'content-type': 'application/json',
+            'Cookie': app.globalData.cookie
+          },
+          complete: function (res) {
+            if (res.statusCode != 200) {
+              console.log('error ' + res.errMsg)
+              return;
+            }
+            console.log(res.data);
+          }
+        })
+      }
+    })
+  },
+
   /**
    * 添加到购物车
    */
@@ -327,17 +426,25 @@ Page({
         "sum": a.listData[a.currentType].dish[a.currentIndex].price,
         "type": _type,
         "index": index,
+        "dishId": a.listData[a.currentType].dish[a.currentIndex].dishId,
+        "categoryId": a.listData[a.currentType].dish[a.currentIndex].categoryId,
         //该菜品已下单数量
         "orderedNumber": 0
       }
       sum = a.tolMoney + a.listData[a.currentType].dish[a.currentIndex].price;
       cartList.push(addItem);
     }
+    var payment = this.data.payment;
+    if (payment%2 == 1) {
+      payment = payment+1;
+    }
     this.setData({
       cartList: cartList,
       tolMoney: sum,
-      foodNumber: a.foodNumber + 1
+      foodNumber: a.foodNumber + 1,
+      payment: payment
     });
+    this.postOrder();
   },
   /*从图片处减少商品*/
   minusFromMenu: function (e) {
@@ -349,17 +456,6 @@ Page({
 
     for (var i = 0; i < cartList.length; i++) {
       if (cartList[i].name == this.data.listData[_type].dish[index].name) {
-
-        //选中的菜品的数量不能小于已经下单的该菜品的数量
-        if (cartList[i].orderedNumber != 0 && cartList[i].orderedNumber == cartList[i].number) {
-          wx.showModal({
-            title: "提示",
-            content: "该商品不能再减少哦~",
-            showCancel: false,
-          })
-          return;
-        }
-
         sum = this.data.tolMoney - cartList[i].price;
         cartList[i].sum -= cartList[i].price;
         cartList[i].number == 1 ? cartList.splice(i, 1) : cartList[i].number--;
@@ -372,27 +468,20 @@ Page({
     var _number = selected_item.number - 1;
     listData[_type].dish[index].number = _number;
 
-    // for (var i = 0; i < listData.length; i++) {
-    //   for (var j = 0; j < listData[i].foods.length; j++) {
-    //     if (listData[i].foods[j].name == selected_item.name) {
-    //       listData[i].foods[j].number = number;
-    //     }
-    //   }
-    // }
-
     this.setData({
       listData: listData,
       cartList: cartList,
       tolMoney: sum,
       foodNumber: this.data.foodNumber - 1
     });
-
+    this.postOrder();
   },
   onHide: function () {
     if (this.data.tolMonney != 0) {
       wx.setStorageSync('cartList', this.data.cartList);
       wx.setStorageSync('tolMoney', this.data.tolMoney);
       wx.setStorageSync('foodNumber', this.data.foodNumber);
+      wx.setStorageSync('payment', this.data.payment);
     }
   }
 })

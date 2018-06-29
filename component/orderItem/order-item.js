@@ -14,7 +14,7 @@ Component({
       value: 0
     },
 
-    sum: {
+    price: {
       type: Number,
       value: 0
     },
@@ -24,14 +24,14 @@ Component({
       value: 0
     },
 
-    orderedNumber: {
-      type: Number,
-      value: 0
-    },
-
     selfOrder : {
       type: Number,
       value: 1
+    },
+
+    mode : {
+      type : String,
+      value: 'orderItem'
     }
   },
 
@@ -39,14 +39,15 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    isShow:true
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    minusFromCart: function (e) {
+    
+    minusFromCart: function () {
       //console.log('trigger minus')
       if (!this.data.selfOrder) {
         wx.showModal({
@@ -57,13 +58,15 @@ Component({
         return;
       }
 
-      if (this.data.orderedNumber != 0 && this.data.orderedNumber == this.data.number) {
+      if (this.data.mode == 'orderedItem') {
         wx.showModal({
           title: "提示",
-          content: "该商品不能再减少哦~",
+          content: "该商品不能修改哦~",
           showCancel: false,
         })
+        return;
       }
+
       var eventDetail = { index: this.data.index }
       this.triggerEvent('minusEvent', eventDetail, {}) //触发minusEvent事件
     },
@@ -78,6 +81,16 @@ Component({
         })
         return;
       }
+
+      if (this.data.mode == 'orderedItem') {
+        wx.showModal({
+          title: "提示",
+          content: "该商品不能修改哦~",
+          showCancel: false,
+        })
+        return;
+      }
+
       var eventDetail = { index: this.data.index }
       this.triggerEvent('addEvent', eventDetail, {}) //触发addEvent事件
     }

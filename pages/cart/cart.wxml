@@ -21,27 +21,42 @@
         这里，空空的
       </view>
 
-      <scroll-view scroll-y="true" class="{{foodNumber!=0?'scroll-list':''}}">
+      <scroll-view scroll-y="true" class="{{bill != 0 ?'scroll-list':''}}">
         <!--当前用户-->
         <view wx:if="{{foodNumber!=0?true:false}}">
             <image class='avatar' src='{{url}}'>
             </image>
-            <span class='name'>{{CustomerID}}</span>
+            <span class='name'>{{nickName}}</span>
         </view>
-        <view class="orderList" wx:for="{{cartList}}" wx:key="unique" wx:if="{{cartList.length!=0?true:false}}">
-          <order-item name="{{item.name}}" number='{{item.number}}' sum='{{item.sum}}' index='{{index}}' orderedNumber='{{item.orderedNumber}}' selfOrder='1' bindminusEvent='minusFromCart' bindaddEvent='addToCart' >
-            </order-item>
+
+        <view class="orderedList" wx:for="{{cartList}}" wx:key="unique"  wx:if='{{isPost?true:false}}'>
+          <order-item name="{{item.name}}" number='{{item.orderedNumber}}' price= "{{item.price}}" index='{{index}}' mode='orderedItem' selfOrder='1' bindminusEvent='minusFromCart' bindaddEvent='addToCart'>
+          </order-item>
         </view>
+
+        <view class="orderList" wx:for="{{cartList}}" wx:key="unique">
+          <order-item name="{{item.name}}" number='{{item.number-item.orderedNumber}}' price= "{{item.price}}" index='{{index}}' mode='orderItem' selfOrder='1' bindminusEvent='minusFromCart' bindaddEvent='addToCart' >
+          </order-item>
+        </view>
+
 
         <!--其他用户订单-->
         <view  wx:for="{{tableList}}" wx:key="unique" wx:if="{{tableList.length!=0?true:false}}">
-          <view>
+          <view wx:if="{{item.dish.length!=0?true:false}}">
             <image class='avatar' src='{{item.customer_image}}'>
             </image>
-            <span class='name'>{{item.customerId}}</span>
+            <span class='name'>{{item.customer_name}}</span>
           </view>
+
+          <view class="orderedList" wx:for="{{item.dish}}" wx:for-item="items" wx:key="unique" wx:for-index="indexs">
+            <order-item name="{{items.name}}" number='{{items.orderedNumber}}' price= "{{items.price}}" index='{{indexs}}' mode='orderedItem' selfOrder='0' bindminusEvent='minusFromCart' bindaddEvent='addToCart' >
+            </order-item>
+          </view>
+        </view>
+
+        <view  wx:for="{{tableList}}" wx:key="unique" wx:if="{{tableList.length!=0?true:false}}">
           <view class="orderList" wx:for="{{item.dish}}" wx:for-item="items" wx:key="unique" wx:for-index="indexs">
-            <order-item name="{{items.name}}" number='{{items.number}}' sum='{{items.sum}}' index='{{indexs}}' orderedNumber='{{items.orderedNumber}}' selfOrder='0' bindminusEvent='minusFromCart' bindaddEvent='addToCart' >
+            <order-item name="{{items.name}}" number='{{items.number-items.orderedNumber}}' price= "{{items.price}}" index='{{indexs}}' mode='orderItem' selfOrder='0' bindminusEvent='minusFromCart' bindaddEvent='addToCart' >
             </order-item>
           </view>
         </view>

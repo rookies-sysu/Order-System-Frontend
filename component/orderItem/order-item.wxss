@@ -22,33 +22,43 @@
 .icon-minus:before { content: "\e617"; }
 
 
-.orderItem{
-  padding-top: 6rpx;
+.orderItem {
+  margin-top: 6rpx;
+  color:#222222;
 }
-.itemName{
+
+.orderedItem {
+  margin-top: 6rpx;
+  color:#888888;
+}
+
+.itemName {
   font-size: 27rpx;
 }
-.item-info{
+
+.item-info {
   float: right;
   display: flex;
   flex-direction: row;
 }
-.orderNum{
+
+.orderNum {
   margin-top:1rpx;
   margin-left: 1rpx;
   width: 60rpx;
   text-align: center
 }
-.plus-icon{
-  font-size: 40rpx;
-  color:#444444;
+
+.plus-icon {
+  font-size: 37rpx;
 }
+
 .minus-icon{
   font-size: 37rpx;
-  color:#444444;
 }
+
 .sum {
-    margin-top: 6rpx;
+    padding-top: 6rpx;
     width:130rpx;
     text-align: right;
 }
