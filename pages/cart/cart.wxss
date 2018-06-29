@@ -46,7 +46,7 @@
   border-bottom:2rpx solid #c3c3c3;
 }
 .scroll-list {
-  height: 300rpx;
+  height: 800rpx;
 }
 .orderInfo {
   padding-top:35rpx;
@@ -96,7 +96,7 @@
   font-weight: lighter;
   font-size: 30rpx;
   color: #6C6C6C;
-  padding-top: 15rpx;
+  margin-top: 5rpx;
   height: 120rpx;
   width: 500rpx;
 }

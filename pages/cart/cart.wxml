@@ -1,5 +1,5 @@
 <!--order.wxml-->
-
+<scroll-view scroll-y="true" class="{{bill != 0 ?'scroll-list':''}}">
   <view class="order">
     <view class="address">
       <view class="address1">
@@ -21,7 +21,7 @@
         这里，空空的
       </view>
 
-      <scroll-view scroll-y="true" class="{{bill != 0 ?'scroll-list':''}}">
+      
         <!--当前用户-->
         <view wx:if="{{foodNumber!=0?true:false}}">
             <image class='avatar' src='{{url}}'>
@@ -60,16 +60,16 @@
             </order-item>
           </view>
         </view>
-      </scroll-view>
-      <view class = "tips" wx:if="{{foodNumber!=0?true:false}}">tips: 已提交的订单不会重复下单</view>
+      
+      <view class = "tips" wx:if="{{bill!=0?true:false}}">tips: 已提交的订单不会重复下单</view>
       <view class="line1"></view>
     </view>
   </view>
   <view class="details">
     <view>备注</view>
-    <textarea class="detailText" placeholder="桌号：{{tableNum}}" bindblur="bindTextAreaBlur" value="{{details}}"></textarea>
+    <input class="detailText" placeholder="桌号：{{tableNum}}" bindblur="bindTextAreaBlur" value="{{details}}"></input>
   </view>
-
+</scroll-view>
   <view class="payment">
     <label class="heji">
     合计
