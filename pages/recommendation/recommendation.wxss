@@ -1,0 +1,5 @@
+/* pages/recommendation/recommendation.wxss */
+
+.recommendation_list {
+  margin-top: 20px;
+}
