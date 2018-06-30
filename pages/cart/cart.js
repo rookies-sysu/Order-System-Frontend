@@ -196,16 +196,18 @@ Page({
 
   orderPersonal: function(maxPayment) {
     var that = this;
-    var orderedList = that.data.cartList;
-    for (var i = 0; i < orderedList.length; i++) {
-      orderedList[i].orderedNumber = orderedList[i].number;
+    var orderedList = that.data.orderedList;
+    for (var i = 0; i < that.data.cartList.length; i++) {
+      orderedList.push(that.data.cartList[i])
+      orderedList[orderedList.length - 1].orderedNumber = that.data.cartList[i].number
     }
     that.setData({
       isOrdered: true,
       isPost: true,
       payment: maxPayment, 
       details: '',
-      cartList: orderedList,
+      cartList: [],
+      orderedList: orderedList
     })
     that.postOrder();
   },

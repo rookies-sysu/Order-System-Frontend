@@ -159,8 +159,8 @@ Page({
         for (var j = 0; j < listData.length; j++)
           for (var k = 0; k < listData[j].dish.length; k++)
             if (cartList[i].name == listData[j].dish[k].name)
-              listData[j].dish[k].number = cartList[i].number
-              
+              listData[j].dish[k].number = cartList[i].hasOwnProperty("orderedNumber") ? cartList[i].number - cartList[i].orderedNumber : cartList[i].number
+
         if (cartList[i].number == 0) {
           cartList.splice(i, 1);
           // 删除元素后需要调整下标位置
