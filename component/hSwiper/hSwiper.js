@@ -2,19 +2,6 @@ var _hSwiperId = 0;
 
 class hSwiper {
   constructor(props) {
-    this.onFirstView = function () {
-      // console.log(arguments," 第一个视图")
-    };
-    this.onLastView = function () {
-      // console.log(arguments,"最后一个视图")
-    };
-    this.afterViewChange = function () {
-      // console.log(arguments,"视图移动之后")
-    };
-    this.beforeViewChange = function () {
-      // console.log(arguments,"视图移动之前")
-    };
-
     props = props || {};
 
     // 获得当前Page上下文
