@@ -35,7 +35,7 @@
         </view>
 
         <view class="orderList" wx:for="{{cartList}}" wx:key="unique">
-          <order-item name="{{item.name}}" number='{{item.number}}' price= "{{item.price}}" index='{{index}}' mode='orderItem' selfOrder='1' bindminusEvent='minusFromCart' bindaddEvent='addToCart' >
+          <order-item name="{{item.name}}" number='{{item.number-item.orderedNumber}}' price= "{{item.price}}" index='{{index}}' mode='orderItem' selfOrder='1' bindminusEvent='minusFromCart' bindaddEvent='addToCart' >
           </order-item>
         </view>
 

@@ -34,6 +34,7 @@
 .food-type {
   font-family: "SimHei";
   font-weight: bold;
+  margin-top: 20rpx;
   margin-left: 40rpx;
   padding:4rpx
 }

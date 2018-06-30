@@ -1,8 +1,8 @@
 <import src="../../component/hSwiper/hSwiper.wxml"/>
 <scroll-view scroll-y="true" class="scroll_box">
-   <view class="mainContainer">
+  <view class="mainContainer">
     <template is="hSwiper" data="{{...hSwiperVar}}"></template>
-  </view> 
+  </view>
 
   <view id="a{{index}}" wx:for="{{listData}}" wx:key="unique" style="width:{{styleValue[index]}}px;" data-type="{{index}}">
       <view class="food-type">{{item.name}}</view>
