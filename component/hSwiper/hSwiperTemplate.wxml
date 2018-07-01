@@ -1,0 +1,5 @@
+<template name="hSwiperItem">
+	<view class="itemSelf">
+    	<image style="border-radius: 3%; width:100%; height:100%" src="{{item}}" />
+	</view>	
+</template>

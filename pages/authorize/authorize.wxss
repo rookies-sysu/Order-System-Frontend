@@ -1,0 +1,36 @@
+/* pages/authorize/authorize.wxss */
+.name {
+  margin-top: 100rpx;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.logo {
+  margin-top: 50rpx;
+  margin-left: 50rpx;
+}
+
+.authorize-button {
+  margin-top: 50rpx;
+  width: 210rpx;
+  margin-right: 130rpx;
+  background:#d4e1a5;
+  color: #aaaaaa;
+  border-radius: 6rpx;
+}
+
+.hover-button {
+  margin-top: 50rpx;
+  width: 210rpx;
+  margin-right: 130rpx;
+  background:#c4d9a5;
+  color: #888888;
+  border-radius: 6rpx;
+}
+
+.copyright {
+  color: #aaaaaa;
+  font-size: 26rpx;
+  margin-top: 150rpx;
+  text-align: center
+}

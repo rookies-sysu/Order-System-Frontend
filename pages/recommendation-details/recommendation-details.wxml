@@ -1,0 +1,23 @@
+<!--pages/recommendation-details/recommendation-details.wxml-->
+
+<view class="wrapper">
+  <image class="recommendation-image" style="width: {{window_width}}px; height: {{window_width}}px;" src="{{recommendation.imageUrl}}"></image>
+  <view class="recommendation-description">
+    <view class="title">{{recommendation.title}}\n</view>
+    <view class="details" wx:for="{{recommendation.details}}" wx:key="xx">
+      <view class="details-description">{{item.description}}</view>
+      <view class="details-dish">
+        <image class="details-dish-image" src="{{item.dish.imageUrl}}"></image>
+        <view class="details-dish-info">
+          <view class="details-dish-name">{{item.dish.name}}</view>
+          <view class="details-dish-price">￥{{item.dish.price}}</view>
+        </view>
+        <view class="details-dish-content">
+          <i class="iconfont icon-minus list-minus" data-index="{{item.dish.index}}" data-dish="{{item.dish.dishID}}" data-category="{{item.dish.CategoryID}}" wx:if="{{item.dish.number===0?false:true}}" catchtap="minusFromMenu"></i>
+          <span wx:if="{{item.dish.number===0?false:true}}" class="details-dish-content-number"> {{item.dish.hastOwnProperty("orderedNumber") ? item.dish.number - item.dish.orderedNumber : item.dish.number}} </span>
+          <i class="iconfont icon-add plus-icon" data-index="{{item.dish.index}}" data-dish="{{item.dish.dishID}}" data-category="{{item.dish.CategoryID}}" catchtap="addToCart"></i>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

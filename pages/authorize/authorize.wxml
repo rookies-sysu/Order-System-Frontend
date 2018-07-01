@@ -1,0 +1,14 @@
+<!--pages/authorize/authorize.wxml-->
+<view class='name'>Tiny Hippo 小河马点餐</view>
+
+<image class='logo' mode='aspectFit' src='{{url}}'></image>
+
+<!-- 需要使用 button 来授权登录 -->
+<button class="authorize-button" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" hover-class='hover-button'>授权登录</button>
+<view wx:else>请升级微信版本</view>
+
+<view class='copyright'> 
+<view>Copyright (c) 2018</view>
+<view>Copyright Tiny Hippo All Rights Reserved.</view>
+</view>
+

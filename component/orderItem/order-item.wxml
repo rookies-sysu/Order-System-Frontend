@@ -1,0 +1,11 @@
+<!--component/orderItem/order-item.wxml-->
+<view class='{{mode}}' wx:if="{{number==0?false:true}}">
+  <view class="itemName" wx:if="{{number==0?false:true}}">{{name}}
+    <view class="item-info" wx:if="{{number==0?false:true}}">
+      <i class="iconfont icon-minus minus-icon" bindtap="minusFromCart" wx:if="{{number==0?false:true}}"></i>
+      <text class="orderNum" wx:if="{{number==0?false:true}}">{{number}}</text>
+      <i class="iconfont icon-add plus-icon" bindtap="addToCart" wx:if="{{number==0?false:true}}"></i>
+      <text class="sum" wx:if="{{number==0?false:true}}">￥ {{number*price}}</text>
+    </view>
+  </view>
+</view>
