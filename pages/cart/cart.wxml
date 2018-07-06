@@ -23,7 +23,7 @@
 
 
       <!--当前用户-->
-      <view wx:if="{{cartList.length!=0?true:false}}">
+      <view wx:if="{{orderedList.length + cartList.length > 0?true:false}}">
         <image class='avatar' src='{{url}}'>
         </image>
         <span class='name'>{{nickName}}</span>
